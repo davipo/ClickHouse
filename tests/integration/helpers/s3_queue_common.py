@@ -42,23 +42,22 @@ def generate_random_files(
     use_random_names=False,
     files=None,
 ):
-    if files is not None:
-        pass
-    elif use_random_names:
-        files = [
-            (f"{files_path}/{random_str(10)}.csv", i)
-            for i in range(start_ind, start_ind + count)
-        ]
-    elif use_prefix is not None:
-        files = [
-            (f"{files_path}/{use_prefix}_{i}.csv", i)
-            for i in range(start_ind, start_ind + count)
-        ]
-    else:
-        files = [
-            (f"{files_path}/test_{i}.csv", i)
-            for i in range(start_ind, start_ind + count)
-        ]
+    if files is None:
+        if use_random_names:
+            files = [
+                (f"{files_path}/{random_str(10)}.csv", i)
+                for i in range(start_ind, start_ind + count)
+            ]
+        elif use_prefix is not None:
+            files = [
+                (f"{files_path}/{use_prefix}_{i}.csv", i)
+                for i in range(start_ind, start_ind + count)
+            ]
+        else:
+            files = [
+                (f"{files_path}/test_{i}.csv", i)
+                for i in range(start_ind, start_ind + count)
+            ]
     files.sort(key=lambda x: x[0])
 
     print(f"Generating files: {files}")
